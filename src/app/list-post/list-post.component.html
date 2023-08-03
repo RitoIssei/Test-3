@@ -1,0 +1,13 @@
+<div class="post">
+  <h2>Posts</h2>
+  <ul>
+    <li *ngFor="let post of posts">
+      <h5>{{ post.title }}</h5>
+      <div class="conten">
+        <img [src]="post.picture" alt="Image" />
+        <p>{{ post.decription }}</p>
+        <button class="btn btn-secondary" [routerLink]="['/home/posts', post.id]">Read...</button>
+      </div>
+    </li>
+  </ul>
+</div>

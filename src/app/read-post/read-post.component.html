@@ -1,0 +1,13 @@
+<div>
+  <div class="ReadPost">
+    <h5>{{ post.title }}</h5>
+    <p>{{ post.decription }}</p>
+    <div class="container">
+      <img [src]="post.picture" alt="">
+    </div>
+    <p>{{ post.detail }}</p>
+  </div>
+  <div class="edit">
+    <button class="btn btn-secondary" (click)="openModal(post.id)">Edit</button>
+  </div>
+</div>

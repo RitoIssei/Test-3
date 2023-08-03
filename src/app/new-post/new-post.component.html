@@ -1,0 +1,24 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">First modal</h4>
+  <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="closeModal()">
+    <span aria-hidden="true" class="visually-hidden">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <h2 *ngIf="id < 0">New Post</h2>
+  <h2 *ngIf="id >= 0">Edit Post</h2>
+  <form [formGroup]="form" (ngSubmit)="supmit()">
+    <label for="title">Title</label>
+    <input class="form-control" id="title" formControlName="title" type="text" placeholder="write something">
+    <label for="picture">Picture</label>
+    <input class="form-control" id="picture" formControlName="picture" type="url" placeholder="write url">
+    <label  for="decription">Decription</label>
+    <textarea class="form-control" id="decription" formControlName="decription" type="text" placeholder="write something"></textarea>
+    <label for="detail">Detail</label>
+    <textarea class="form-control" id="detail" type="text" formControlName="detail" placeholder="write something"></textarea>
+    <div class="container">
+      <button type="button" class="btn btn-primary" (click)="closeModal()">Close</button>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</div>
