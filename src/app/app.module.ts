@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { AuthInterceptor } from './auth.interceptor';
+import { UserDataService } from './user-data.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +16,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { HomeViewComponent } from './home-view/home-view.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,8 @@ import { HomeViewComponent } from './home-view/home-view.component';
     NewPostComponent,
     ReadPostComponent,
     SignInComponent,
-    HomeViewComponent
+    HomeViewComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +38,14 @@ import { HomeViewComponent } from './home-view/home-view.component';
     ReactiveFormsModule,
     ModalModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    UserDataService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

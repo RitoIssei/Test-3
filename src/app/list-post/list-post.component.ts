@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PostsApiService } from '../posts-api.service';
+import { UserDataService } from '../user-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-post',
@@ -7,13 +9,25 @@ import { PostsApiService } from '../posts-api.service';
   styleUrls: ['./list-post.component.scss']
 })
 export class ListPostComponent implements OnInit {
+  userName: any
   posts: any[] = [];
-  constructor(private postService: PostsApiService) {}
+  constructor( private router: Router, private postService: PostsApiService, private userDataService: UserDataService) {}
 
   ngOnInit() {
     this.postService.getPosts().subscribe((data) => {
-      this.posts = data;
+      if(data !== null) {
+        this.posts = data;
+      }else {
+        alert("You must log in");
+        this.router.navigate(['']);
+      }
     });
+    this.userName = this.userDataService.getUser()?.username || '';
   }
 
+  logout() {
+    this.userDataService.clearUser();
+    console.log('Đăng xuất thành công.');
+    this.router.navigate(['']);
+  }
 }

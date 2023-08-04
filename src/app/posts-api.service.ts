@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-import { Post } from './post.interface';
+import { Post } from './app.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -13,30 +12,15 @@ export class PostsApiService {
   constructor(private http: HttpClient) {}
 
   getPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>(this.apiUrl).pipe(
-      catchError((error) => {
-        console.error('Error:', error);
-        return [];
-      })
-    );
+    return this.http.get<Post[]>(this.apiUrl)
   }
 
-  updatePost(post: any, id: number): Observable<any> {
+  updatePost(post: Post, id: number): Observable<any> {
     const url = `${this.apiUrl}/${id}`;
-    return this.http.put<any>(url, post).pipe(
-      catchError((error) => {
-        console.error('Error:', error);
-        return of(null);
-      })
-    );
+    return this.http.put<any>(url, post)
   }
 
-  createPost(post: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl, post).pipe(
-      catchError((error) => {
-        console.error('Error:', error);
-        return of(null);
-      })
-    );
+  createPost(post: Post): Observable<any> {
+    return this.http.post<any>(this.apiUrl, post)
   }
 }

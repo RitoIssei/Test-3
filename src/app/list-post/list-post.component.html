@@ -1,13 +1,23 @@
 <div class="post">
-  <h2>Posts</h2>
-  <ul>
-    <li *ngFor="let post of posts">
-      <h5>{{ post.title }}</h5>
-      <div class="conten">
-        <img [src]="post.picture" alt="Image" />
-        <p>{{ post.decription }}</p>
-        <button class="btn btn-secondary" [routerLink]="['/home/posts', post.id]">Read...</button>
+  <div class="container">
+    <h2>Posts</h2>
+    <div class="d-flex">
+      <h5>{{ 'Hi ' + userName }}</h5>
+      <button (click)="logout()" class="btn btn-danger">Logout</button>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4" *ngFor="let post of posts">
+        <div class="card mb-4">
+          <img class="card-img-top" [src]="post.picture" alt="Image" />
+          <div class="card-body">
+            <h5 class="card-title">{{ post.title }}</h5>
+            <p class="card-text">{{ post.decription }}</p>
+            <button class="btn btn-secondary" [routerLink]="['/home/posts', post.id]">Read...</button>
+          </div>
+        </div>
       </div>
-    </li>
-  </ul>
+    </div>
+  </div>
 </div>

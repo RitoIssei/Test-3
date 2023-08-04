@@ -7,7 +7,7 @@
       <div style="font-size: 18px; margin: 24px 0" class="text-center">
         Sign in
       </div>
-      <form>
+      <form [formGroup]="formLogin" (ngSubmit)="supmitLogin()">
         <div class="form-group mt-2">
           <label for="username">username</label>
           <input formControlName="username" id="username" type="text" class="form-control">
@@ -34,7 +34,7 @@
       <div style="font-size: 18px; margin: 24px 0" class="text-center">
         Sign in
       </div>
-      <form>
+      <form [formGroup]="formRegister" (ngSubmit)="supmitRegister()">
         <div class="form-group mt-2">
           <label for="username">Username</label>
           <input formControlName="username" id="username" type="text" class="form-control">
