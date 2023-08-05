@@ -17,14 +17,14 @@ export class SignInComponent {
 
   constructor( private router: Router, private userApiService: UserApiService, private userDataService: UserDataService, private formBuilder: FormBuilder) {
     this.formLogin = this.formBuilder.group({
-      username: ['', Validators.required],
+      id: ['', Validators.required],
       password: ['', [ Validators.required, Validators.min(6)]],
     });
     this.formRegister = this.formBuilder.group({
-      username: ['', Validators.required],
+      id: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['',[ Validators.required, Validators.min(6)]],
-      confirmPassword: ['', [Validators.required]],
+      // confirmPassword: ['', [Validators.required]],
     });
   }
   
@@ -52,9 +52,8 @@ export class SignInComponent {
   }
 
   supmitRegister() {
-    if (this.formLogin.valid) {
-
-      const user: User = {...this.formLogin.value};
+    if (this.formRegister.valid) {
+      const user: User = {...this.formRegister.value, type: 'admin'};
       this.userApiService.apiRegister(user).subscribe((data) => {
         if (data !== null) {
           this.router.navigate(['/home']);

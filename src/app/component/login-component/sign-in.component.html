@@ -9,8 +9,8 @@
       </div>
       <form [formGroup]="formLogin" (ngSubmit)="supmitLogin()">
         <div class="form-group mt-2">
-          <label for="username">username</label>
-          <input formControlName="username" id="username" type="text" class="form-control">
+          <label for="id">id</label>
+          <input formControlName="id" id="id" type="text" class="form-control">
         </div>
         <div class="form-group mt-2">
           <label for="password">password</label>
@@ -36,8 +36,8 @@
       </div>
       <form [formGroup]="formRegister" (ngSubmit)="supmitRegister()">
         <div class="form-group mt-2">
-          <label for="username">Username</label>
-          <input formControlName="username" id="username" type="text" class="form-control">
+          <label for="id">id</label>
+          <input formControlName="id" id="id" type="text" class="form-control">
         </div>
         <div class="form-group mt-2">
           <label for="email">Email</label>
@@ -47,10 +47,10 @@
           <label for="password">Password</label>
           <input formControlName="password" id="password" type="text" class="form-control">
         </div>
-        <div class="form-group mt-2">
+        <!-- <div class="form-group mt-2">
           <label for="confirmPassword">Confirm Password</label>
           <input formControlName="confirmPassword" id="confirmPassword" type="text" class="form-control">
-        </div>
+        </div> -->
         <div class="container">
           <button type="submit" class="btn btn-primary">Register</button>
         </div>
