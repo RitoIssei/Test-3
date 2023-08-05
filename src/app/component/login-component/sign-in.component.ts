@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { User } from '../app.interface';
-import { UserApiService } from '../user-api.service';
-import { UserDataService } from '../user-data.service';
+import { User } from 'src/app/app.interface';
+import { UserApiService } from 'src/app/http-cient/user-api.service';
+import { UserDataService } from 'src/app/control-data/user-data.service';
 import { Router } from '@angular/router';
 
 @Component({

@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ListPostComponent } from './list-post/list-post.component';
-import { ReadPostComponent } from './read-post/read-post.component';
-import { HomeViewComponent } from './home-view/home-view.component';
-import { SignInComponent } from './sign-in/sign-in.component';
-import { GuardService } from './guard.service';
-import { AdminGuardService } from './admin-guard.service';
-import { AdminComponent } from './admin/admin.component';
+import { ListPostComponent } from './component/home-component/list-post/list-post.component';
+import { ReadPostComponent } from './component/home-component/read-post/read-post.component';
+import { HomeViewComponent } from './component/home-component/home-view.component';
+import { SignInComponent } from './component/login-component/sign-in.component';
+import { GuardService } from './gaurd/guard.service';
+import { AdminGuardService } from './gaurd/admin-guard.service';
+import { AdminComponent } from './component/admin-component/admin.component';
 
 
 const routes: Routes = [
@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent, canActivate: [AdminGuardService] },
   { path: 'home', component: HomeViewComponent,
     children: [
-      { path: 'posts', component: ListPostComponent },
+      { path: 'posts', component: ListPostComponent, canActivate: [GuardService] },
       { path: 'posts/:id', component: ReadPostComponent }
       ] 
   }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PostsApiService } from '../posts-api.service';
+import { PostsApiService } from 'src/app/http-cient/posts-api.service';
 import { NewPostComponent } from '../new-post/new-post.component';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 

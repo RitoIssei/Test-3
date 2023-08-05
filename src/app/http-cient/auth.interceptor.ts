@@ -2,14 +2,12 @@ import { Injectable } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
-  HttpEvent,
   HttpInterceptor,
-  HttpResponse,
   HttpErrorResponse
 } from '@angular/common/http';
 import { Observable, throwError, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { UserDataService } from './user-data.service';
+import { UserDataService } from '../control-data/user-data.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {

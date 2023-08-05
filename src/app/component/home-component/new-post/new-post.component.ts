@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PostsApiService } from '../posts-api.service';
+import { PostsApiService } from 'src/app/http-cient/posts-api.service';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ActivatedRoute, Router } from '@angular/router';
