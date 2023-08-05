@@ -34,20 +34,26 @@ export class SignInComponent {
 
   supmitLogin() {
     if (this.formLogin.valid) {
-      const user: User = {...this.formRegister.value};
+      const user: User = {...this.formLogin.value};
+      console.log(this.formLogin.value);
+      
       this.userApiService.apiLogin(user).subscribe((data) => {
         if (data !== null) {
+          console.log(data);
           this.userDataService.setUser(data);
           this.router.navigate(['/home']);
         } else {
           alert("faid");
         }
       })
+    }else {
+      alert("Fill in all fields");
     }
   }
 
   supmitRegister() {
     if (this.formLogin.valid) {
+
       const user: User = {...this.formLogin.value};
       this.userApiService.apiRegister(user).subscribe((data) => {
         if (data !== null) {
@@ -56,6 +62,8 @@ export class SignInComponent {
           alert("faid");
         }
       })
+    }else {
+      alert("Fill in all fields");
     }
   }
 }

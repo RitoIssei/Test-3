@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent, canActivate: [AdminGuardService] },
   { path: 'home', component: HomeViewComponent,
     children: [
-      { path: 'posts', component: ListPostComponent, canActivate: [GuardService] },
+      { path: 'posts', component: ListPostComponent },
       { path: 'posts/:id', component: ReadPostComponent }
       ] 
   }

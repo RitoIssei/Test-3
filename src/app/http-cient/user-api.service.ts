@@ -8,15 +8,14 @@ import { User } from '../app.interface';
   providedIn: 'root'
 })
 export class UserApiService {
-  private apiUrl = 'https://example.com/api/users';
+  private apiUrl = 'https://64cdc3270c01d81da3ee43c6.mockapi.io/Users';
   constructor(private http: HttpClient) { }
 
   apiLogin(user: User): Observable<User | null> {
-    return this.http.post<User>(this.apiUrl, user)
+    return this.http.get<User>(`${this.apiUrl}/${user.username}`)
   }
 
   apiRegister(user: User): Observable<User | null> {
-    const url = `${this.apiUrl}/register`;
-    return this.http.post<User>(url, user)
+    return this.http.post<User>(this.apiUrl, user)
   }
 }
