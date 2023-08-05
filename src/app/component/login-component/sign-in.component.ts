@@ -21,7 +21,7 @@ export class SignInComponent {
       password: ['', [ Validators.required, Validators.min(6)]],
     });
     this.formRegister = this.formBuilder.group({
-      id: ['', Validators.required],
+      username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['',[ Validators.required, Validators.min(6)]],
       // confirmPassword: ['', [Validators.required]],
@@ -56,6 +56,12 @@ export class SignInComponent {
       const user: User = {...this.formRegister.value, type: 'admin'};
       this.userApiService.apiRegister(user).subscribe((data) => {
         if (data !== null) {
+          this.userApiService.apiGetUser().subscribe((users) => {
+            if(users !== null) {
+              const id = users.length;
+              alert(`Your ID: ${id}`);
+            }
+          });
           this.router.navigate(['/home']);
         } else {
           alert("faid");
