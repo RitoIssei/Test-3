@@ -12,7 +12,6 @@ export class PostsApiService {
   constructor(private http: HttpClient) {}
 
   getPosts(): Observable<Post[]> {
-    console.log(this.http);
     return this.http.get<Post[]>(this.apiUrl)
   }
 

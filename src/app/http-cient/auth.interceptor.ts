@@ -15,7 +15,9 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<any> {
     const token = this.userDataService.getUser()?.token;
+    
     if (token) {
+      console.log(token);
       request = request.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`
@@ -25,6 +27,7 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
         console.error('Error:', error);
+        alert("faid");
         return of(null)
       })
     );

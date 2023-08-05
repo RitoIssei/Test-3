@@ -41,11 +41,8 @@ export class SignInComponent implements OnInit {
   supmitLogin() {
     if (this.formLogin.valid) {
       const user: User = {...this.formLogin.value};
-      console.log(user);
-      
       this.userApiService.apiLogin(user).subscribe((data) => {
         if (data !== null) {
-          console.log(data);
           this.userDataService.setUser(data);
           this.router.navigate(['/home']);
         } else {
