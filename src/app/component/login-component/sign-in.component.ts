@@ -35,7 +35,7 @@ export class SignInComponent {
   supmitLogin() {
     if (this.formLogin.valid) {
       const user: User = {...this.formLogin.value};
-      console.log(this.formLogin.value);
+      console.log(user);
       
       this.userApiService.apiLogin(user).subscribe((data) => {
         if (data !== null) {

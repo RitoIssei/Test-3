@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { User } from '../app.interface';
 
 @Injectable({
@@ -12,7 +11,9 @@ export class UserApiService {
   constructor(private http: HttpClient) { }
 
   apiLogin(user: User): Observable<User | null> {
-    return this.http.get<User>(`${this.apiUrl}/${user.username}`)
+    console.log(user.id);
+    
+    return this.http.get<User>(`${this.apiUrl}/${user.id}`)
   }
 
   apiRegister(user: User): Observable<User | null> {
