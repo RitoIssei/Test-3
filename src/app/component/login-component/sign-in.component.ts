@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/app.interface';
 import { UserApiService } from 'src/app/http-cient/user-api.service';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss']
 })
-export class SignInComponent {
+export class SignInComponent implements OnInit {
   showLogin: boolean = true
   formLogin: FormGroup;
   formRegister: FormGroup;
@@ -30,6 +30,12 @@ export class SignInComponent {
   
   show() {
     this.showLogin = !this.showLogin
+  }
+
+  ngOnInit(): void {
+    if(this.userDataService.getUser() !== null) {
+      this.router.navigate(['/home']);
+    }
   }
 
   supmitLogin() {
@@ -58,8 +64,9 @@ export class SignInComponent {
         if (data !== null) {
           this.userApiService.apiGetUser().subscribe((users) => {
             if(users !== null) {
-              const id = users.length;
-              alert(`Your ID: ${id}`);
+              const lastUser: User | undefined = users[users.length - 1];
+              this.userDataService.setUser(lastUser);
+              alert(`Your ID: ${lastUser.id}`);
             }
           });
           this.router.navigate(['/home']);

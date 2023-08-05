@@ -14,15 +14,19 @@ export class ListPostComponent implements OnInit {
   constructor( private router: Router, private postService: PostsApiService, private userDataService: UserDataService) {}
 
   ngOnInit() {
-    this.postService.getPosts().subscribe((data) => {
-      if(data !== null) {
-        this.posts = data;
-      }else {
-        alert("You must log in");
-        this.router.navigate(['']);
-      }
-    });
-    this.userName = this.userDataService.getUser()?.username || '';
+    if(this.userDataService.getUser() === null) {
+      this.router.navigate(['']);
+    }else {
+      this.postService.getPosts().subscribe((data) => {
+        if(data !== null) {
+          this.posts = data;
+        }else {
+          alert("You must log in");
+          this.router.navigate(['']);
+        }
+      });
+      this.userName = this.userDataService.getUser()?.username || '';
+    }
   }
 
   logout() {
