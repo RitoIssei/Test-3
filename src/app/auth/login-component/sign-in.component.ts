@@ -15,32 +15,32 @@ export class SignInComponent implements OnInit {
   formLogin: FormGroup;
   formRegister: FormGroup;
 
-  constructor( private router: Router, private userApiService: UserApiService, private userDataService: UserDataService, private formBuilder: FormBuilder) {
+  constructor(private router: Router, private userApiService: UserApiService, private userDataService: UserDataService, private formBuilder: FormBuilder) {
     this.formLogin = this.formBuilder.group({
       id: ['', Validators.required],
-      password: ['', [ Validators.required, Validators.min(6)]],
+      password: ['', [Validators.required, Validators.min(6)]],
     });
     this.formRegister = this.formBuilder.group({
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['',[ Validators.required, Validators.min(6)]],
+      password: ['', [Validators.required, Validators.min(6)]],
       // confirmPassword: ['', [Validators.required]],
     });
   }
-  
+
   show() {
     this.showLogin = !this.showLogin
   }
 
   ngOnInit(): void {
-    if(this.userDataService.getUser() !== null) {
+    if (this.userDataService.getUser() !== null) {
       this.router.navigate(['/home']);
     }
   }
 
   supmitLogin() {
     if (this.formLogin.valid) {
-      const user: User = {...this.formLogin.value};
+      const user: User = { ...this.formLogin.value };
       this.userApiService.apiLogin(user).subscribe((data) => {
         if (data !== null) {
           this.userDataService.setUser(data);
@@ -49,18 +49,18 @@ export class SignInComponent implements OnInit {
           alert("faid");
         }
       })
-    }else {
+    } else {
       alert("Fill in all fields");
     }
   }
 
   supmitRegister() {
     if (this.formRegister.valid) {
-      const user: User = {...this.formRegister.value, type: 'admin'};
+      const user: User = { ...this.formRegister.value, type: 'admin' };
       this.userApiService.apiRegister(user).subscribe((data) => {
         if (data !== null) {
           this.userApiService.apiGetUser().subscribe((users) => {
-            if(users !== null) {
+            if (users !== null) {
               const lastUser: User | undefined = users[users.length - 1];
               this.userDataService.setUser(lastUser);
               alert(`Your ID: ${lastUser.id}`);
@@ -71,7 +71,7 @@ export class SignInComponent implements OnInit {
           alert("faid");
         }
       })
-    }else {
+    } else {
       alert("Fill in all fields");
     }
   }

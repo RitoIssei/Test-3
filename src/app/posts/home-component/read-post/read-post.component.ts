@@ -11,9 +11,9 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 })
 export class ReadPostComponent implements OnInit {
   post: any = {};
-  constructor(private modalRef: BsModalRef, private modalService: BsModalService, private postService: PostsApiService, private route: ActivatedRoute, private router: Router) {}
+  constructor(private modalRef: BsModalRef, private modalService: BsModalService, private postService: PostsApiService, private route: ActivatedRoute, private router: Router) { }
   ngOnInit() {
-    const id:number = this.route.snapshot.params['id'];
+    const id: number = this.route.snapshot.params['id'];
     this.postService.getPosts().subscribe((data) => {
       this.post = data[id - 1];
     });
