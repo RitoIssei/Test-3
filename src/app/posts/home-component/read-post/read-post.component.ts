@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PostsApiService } from 'src/app/http-cient/posts-api.service';
 import { NewPostComponent } from '../new-post/new-post.component';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { UserDataService } from 'src/app/control-data/user-data.service';
 
 @Component({
   selector: 'app-read-post',
@@ -11,12 +12,23 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 })
 export class ReadPostComponent implements OnInit {
   post: any = {};
-  constructor(private modalRef: BsModalRef, private modalService: BsModalService, private postService: PostsApiService, private route: ActivatedRoute, private router: Router) { }
+  posts: any[] = [];
+  constructor(private modalRef: BsModalRef, private modalService: BsModalService, private postService: PostsApiService, private route: ActivatedRoute, private router: Router, private userDataService: UserDataService) { }
   ngOnInit() {
     const id: number = this.route.snapshot.params['id'];
-    this.postService.getPosts().subscribe((data) => {
-      this.post = data[id - 1];
-    });
+    if (this.userDataService.getUser() === null) {
+      this.router.navigate(['']);
+    } else {
+      this.postService.getPosts().subscribe((data) => {
+        if (data !== null) {
+          this.posts = data;
+          this.post = data[id - 1];
+        } else {
+          alert("You must log in");
+          this.router.navigate(['']);
+        }
+      });
+    }
   }
 
   openModal(id: number) {
@@ -25,5 +37,6 @@ export class ReadPostComponent implements OnInit {
         id: id
       }
     });
+
   }
 }
