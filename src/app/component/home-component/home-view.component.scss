@@ -1,20 +1,9 @@
-.header {
-  display: flex;
-  justify-content: space-between;
-  margin: 0 40px;
-  border-bottom: 4px groove black;
-}
-
-h1 {
-  margin: 20px 0;
-}
-
 button {
-  width: 145px;
-  margin: auto 5px 10px 5px;
+  margin: 5px;
   bottom: 0;
 }
 
-.contro {
+.menu {
   display: flex;
+  justify-content: space-between;
 }

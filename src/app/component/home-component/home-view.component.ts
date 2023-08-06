@@ -8,9 +8,14 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
   styleUrls: ['./home-view.component.scss']
 })
 export class HomeViewComponent {
+  isNavbarCollapsed = true;
   constructor(private modalRef: BsModalRef, private modalService: BsModalService) { }
 
   openModal() {
     this.modalRef = this.modalService.show(NewPostComponent);
+  }
+
+  toggleNavbar(): void {
+    this.isNavbarCollapsed = !this.isNavbarCollapsed;
   }
 }

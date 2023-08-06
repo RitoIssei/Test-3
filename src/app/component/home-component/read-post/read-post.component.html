@@ -1,13 +1,13 @@
-<div>
-  <div class="ReadPost">
-    <h5>{{ post.title }}</h5>
-    <p>{{ post.decription }}</p>
-    <div class="container">
-      <img [src]="post.picture" alt="">
+<div class="container">
+  <div>
+    <h5 class="fw-bold">{{ post.title }}</h5>
+    <p class="mb-3">{{ post.decription }}</p>
+    <div class="container mb-3">
+      <img class="img-fluid" [src]="post.picture" alt="">
     </div>
     <p>{{ post.detail }}</p>
   </div>
-  <div class="edit">
+  <div class="edit mt-3 d-flex justify-content-end">
     <button class="btn btn-secondary" (click)="openModal(post.id)">Edit</button>
   </div>
 </div>
