@@ -12,14 +12,14 @@ export class UserApiService {
 
   apiLogin(user: User): Observable<User | null> {
     console.log(user.id);
-    return this.http.get<User>(`${this.apiUrl}/${user.id}`)
+    return this.http.get<User | null>(`${this.apiUrl}/${user.id}`)
   }
 
   apiRegister(user: User): Observable<User | null> {
-    return this.http.post<User>(this.apiUrl, user)
+    return this.http.post<User | null>(this.apiUrl, user)
   }
 
   apiGetUser(): Observable<User[] | null> {
-    return this.http.get<User[]>(this.apiUrl)
+    return this.http.get<User[] | null>(this.apiUrl)
   }
 }

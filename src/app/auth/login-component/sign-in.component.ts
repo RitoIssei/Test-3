@@ -45,8 +45,6 @@ export class SignInComponent implements OnInit {
         if (data !== null) {
           this.userDataService.setUser(data);
           this.router.navigate(['/home']);
-        } else {
-          alert("faid");
         }
       })
     } else {
