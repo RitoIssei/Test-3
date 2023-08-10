@@ -11,16 +11,16 @@ import { Router } from '@angular/router';
 export class ListPostComponent implements OnInit {
   userName: any
   posts: any[] = [];
-  constructor( private router: Router, private postService: PostsApiService, private userDataService: UserDataService) {}
+  constructor(private router: Router, private postService: PostsApiService, private userDataService: UserDataService) { }
 
   ngOnInit() {
-    if(this.userDataService.getUser() === null) {
+    if (this.userDataService.getUser() === null) {
       this.router.navigate(['']);
-    }else {
+    } else {
       this.postService.getPosts().subscribe((data) => {
-        if(data !== null) {
+        if (data !== null) {
           this.posts = data;
-        }else {
+        } else {
           alert("You must log in");
           this.router.navigate(['']);
         }

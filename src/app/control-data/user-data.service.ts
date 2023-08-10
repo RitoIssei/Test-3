@@ -5,7 +5,7 @@ import { User } from '../app.interface';
   providedIn: 'root'
 })
 export class UserDataService {
-  
+
   setUser(user: object): void {
     const userJSON = JSON.stringify(user);
     localStorage.setItem('user', userJSON);
@@ -22,6 +22,7 @@ export class UserDataService {
 
   clearUser(): void {
     localStorage.removeItem('user');
+    console.log(6969);
   }
-  
+
 }
