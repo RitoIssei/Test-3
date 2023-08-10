@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AuthInterceptor } from './http-cient/auth.interceptor';
-import { UserDataService } from './control-data/user-data.service';
 import { AuthModule } from './auth/auth.module';
 import { PostsModule } from './posts/posts.module';
 
@@ -15,7 +14,6 @@ import { AdminComponent } from './component/admin-component/admin.component';
 @NgModule({
   declarations: [
     AppComponent,
-
     AdminComponent
   ],
   imports: [
@@ -28,7 +26,7 @@ import { AdminComponent } from './component/admin-component/admin.component';
     ModalModule.forRoot()
   ],
   providers: [
-    UserDataService,
+
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
